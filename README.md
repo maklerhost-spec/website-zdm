@@ -1,33 +1,41 @@
-# ZDM – Website
+# Immobilien zwischen den Meeren – Website
 
-Statische Website: Vite + React + TypeScript + Tailwind CSS, ohne Backend. Gleicher Aufbau wie die anderen
-Websites (z. B. bookique-website).
+Neue Website für die Immobilien zwischen den Meeren eGbR (Husum). Statisch: Vite + React + TypeScript + Tailwind CSS,
+jede Seite wird beim Build fertig vorgerendert (wie bookique-website). Inhalte übernommen von
+zwischen-den-meeren.vibepreview.app, Design komplett neu.
 
-| Seite | URL |
-|---|---|
-| Startseite (Hero, Leistungen, Über uns, Kontakt) | `/` |
-| Impressum | `/impressum/` |
-| Datenschutz | `/datenschutz/` |
+## Seiten
 
-## Texte ändern
+`/`, `/immobilien/`, `/immobilie-verkaufen/`, `/immobilie-vermieten/`, `/immobilienbewertung/`, `/finanzierung/`,
+`/bauvorhaben/`, `/ueber-uns/`, `/region/`, `/kontakt/`, `/rechner/` (+ `kaufnebenkosten/`, `tilgung/`, `budget/`,
+`mietrendite/`), `/impressum/`, `/datenschutzerklaerung/`, `/danke/` (nach dem Absenden eines Formulars, noindex).
 
-Alle Texte, Kontaktdaten und die Domain stehen in **`src/content.ts`**. Alles mit „Platzhalter“ muss noch ersetzt
-werden. Farben stehen in `tailwind.config.js` (`brand`, `accent`).
+## Wo was steht
+
+- Texte, Team, Kontaktdaten, Bilder: `src/content.ts`, Seitentitel und Beschreibungen: `src/site.ts`
+- Rechenlogik der Rechner: `src/calc/math.ts`
+- Farben (Priel, Watt, Reet, Ostsee): `tailwind.config.js`; Schriften (Bricolage Grotesque, Instrument Sans, IBM Plex Mono)
+  liegen selbst gehostet im Build, keine Verbindung zu Google Fonts.
+- Signatur: die bewegten Wasserkanten „Nordsee“ und „Ostsee“ im Startseiten-Hero (`src/components/Waves.tsx`).
+  Alle Animationen respektieren „Bewegung reduzieren“.
+
+## Formulare
+
+Alle Formulare laufen über **Netlify Forms** (`data-netlify`). Nach dem ersten Deploy in Netlify unter
+*Forms → Form notifications* die E-Mail-Benachrichtigung an info@immobilien-zdm.de einrichten.
+
+## Vor dem Livegang
+
+- Bilder liegen noch auf vibe.filesafe.space bzw. immobilien-zdm.de. Nach `public/images/` kopieren und die Pfade in
+  `src/content.ts` (`IMAGES`, `TEAM`) umstellen.
+- Objektliste auf `/immobilien/` einbinden (Quelle klären), bis dahin gibt es dort einen Suchauftrag.
+- Datenschutzerklärung rechtlich prüfen.
 
 ## Lokal starten
-
-Node.js 18 oder neuer.
 
 ```bash
 npm install
 npm run dev       # http://localhost:5173
 npm run build     # Typprüfung, Build und Vorrendern nach dist/
-npm run preview   # dist/ unter http://localhost:4173
+npm run preview   # http://localhost:4173
 ```
-
-Das Vorrendern läuft in `vite build` selbst (Plugin in `vite.config.ts`), also auch bei Bolt oder jedem Host, der nur
-`vite build` ausführt. Ergebnis: eine fertige HTML-Datei pro Seite, `404.html`, `sitemap.xml` und `robots.txt`.
-
-## Veröffentlichen
-
-`netlify.toml` ist vorbereitet (Build `npm run build`, Ordner `dist`). Jeder andere statische Host funktioniert ebenso.

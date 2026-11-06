@@ -2,17 +2,17 @@ import { StrictMode } from "react";
 import { renderToString } from "react-dom/server";
 import { App } from "./App";
 import { headHtml } from "./head";
-import { parsePath } from "./site";
+import { routeFor } from "./site";
 
 export { ROUTES, absoluteUrl } from "./site";
 
-/** HTML for one route, used by scripts/prerender.mjs. */
+/** HTML einer Seite, genutzt von scripts/prerender.mjs. */
 export function render(path: string) {
-  const page = parsePath(path);
+  const route = routeFor(path);
   const html = renderToString(
     <StrictMode>
-      <App page={page} />
+      <App page={route.page} path={route.path} />
     </StrictMode>,
   );
-  return { html, head: headHtml(page), page };
+  return { html, head: headHtml(route), page: route.page };
 }

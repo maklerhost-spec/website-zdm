@@ -1,1 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="#0f2a44"/><text x="32" y="42" font-family="Arial,Helvetica,sans-serif" font-size="26" font-weight="700" fill="#2bb3a0" text-anchor="middle">ZDM</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="#eef1ee"/><path d="M0 0h18c-6 8 6 16 0 24s6 16 0 24 6 12 0 16H0z" fill="#0e2f3a"/><path d="M64 0H46c6 8-6 16 0 24s-6 16 0 24-6 12 0 16h18z" fill="#2f7f8c"/><circle cx="32" cy="32" r="5" fill="#c8a24b"/></svg>

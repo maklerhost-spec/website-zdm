@@ -29,7 +29,7 @@ await writeFile(
 );
 
 const today = new Date().toISOString().slice(0, 10);
-const urls = ROUTES.map((r) => `  <url><loc>${absoluteUrl(r.path)}</loc><lastmod>${today}</lastmod><priority>${r.page === "home" ? "1.0" : "0.3"}</priority></url>`);
+const urls = ROUTES.filter((r) => r.priority !== "0").map((r) => `  <url><loc>${absoluteUrl(r.path)}</loc><lastmod>${today}</lastmod><priority>${r.priority}</priority></url>`);
 await writeFile(join(dist, "sitemap.xml"), `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls.join("\n")}\n</urlset>\n`);
 await writeFile(join(dist, "robots.txt"), `User-agent: *\nAllow: /\n\nSitemap: ${absoluteUrl("/sitemap.xml")}\n`);
 

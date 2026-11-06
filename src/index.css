@@ -1,11 +1,47 @@
+@import "@fontsource-variable/bricolage-grotesque/wdth.css";
+@import "@fontsource-variable/instrument-sans/wdth.css";
+@import "@fontsource/ibm-plex-mono/400.css";
+@import "@fontsource/ibm-plex-mono/500.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-html { scroll-behavior: smooth; }
-body { @apply bg-white text-slate-700 antialiased; }
-h1, h2, h3 { @apply text-brand font-bold tracking-tight; }
-.container-x { @apply mx-auto max-w-6xl px-4 sm:px-6; }
-.btn { @apply inline-flex items-center gap-2 rounded-lg px-5 py-3 font-semibold transition; }
-.btn-primary { @apply btn bg-accent-500 text-white hover:bg-accent-600; }
-.btn-ghost { @apply btn border border-white/30 text-white hover:bg-white/10; }
+@layer base {
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-watt font-sans text-[17px] leading-relaxed text-priel antialiased; }
+  h1, h2, h3, h4 { @apply font-display font-semibold text-priel; font-variation-settings: "wdth" 82; letter-spacing: -0.02em; line-height: 1.02; }
+  ::selection { @apply bg-reet text-tiefsee; }
+  :focus-visible { outline: 3px solid theme("colors.reet.DEFAULT"); outline-offset: 3px; border-radius: 4px; }
+}
+
+@layer components {
+  .wrap { @apply mx-auto w-full max-w-7xl px-4 sm:px-8; }
+  .eyebrow { @apply font-mono text-xs uppercase tracking-[0.18em] text-schlick; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-[15px] font-semibold transition duration-300; }
+  .btn-reet { @apply btn bg-reet text-tiefsee hover:bg-reet-300; }
+  .btn-priel { @apply btn bg-priel text-watt hover:bg-priel-600; }
+  .btn-line { @apply btn border border-current hover:bg-priel hover:text-watt hover:border-priel; }
+  .btn-line-light { @apply btn border border-watt/40 text-watt hover:bg-watt hover:text-priel; }
+  .link-u { background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat; transition: background-size .4s cubic-bezier(.16,1,.3,1); }
+  .link-u:hover { background-size: 100% 1px; }
+  .field { @apply w-full rounded-xl border border-nebel bg-white px-4 py-3 text-base text-priel transition placeholder:text-schlick/60 focus:border-priel focus:outline-none focus:ring-2 focus:ring-reet/50; }
+  .label { @apply mb-1.5 block text-sm font-medium text-priel; }
+  .prose-legal h2 { @apply mt-10 text-2xl; }
+  .prose-legal h3 { @apply mt-6 text-lg; }
+  .prose-legal p, .prose-legal ul { @apply mt-3 text-schlick; }
+  .prose-legal ul { @apply list-disc pl-5; }
+}
+
+/* Scroll-Animationen: nur mit JavaScript ausgeblendet, damit vorgerenderte Inhalte ohne JS sichtbar bleiben. */
+.js .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); transition-delay: var(--d, 0ms); }
+.js .reveal.in { opacity: 1; transform: none; }
+.js .reveal-img { clip-path: inset(12% 12% 12% 12% round 28px); transition: clip-path 1.4s cubic-bezier(.16,1,.3,1); }
+.js .reveal-img.in { clip-path: inset(0 0 0 0 round 28px); }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .js .reveal { opacity: 1; transform: none; }
+  .js .reveal-img { clip-path: none; }
+}
